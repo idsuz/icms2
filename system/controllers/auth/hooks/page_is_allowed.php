@@ -13,7 +13,7 @@ class onAuthPageIsAllowed extends cmsAction {
 
         // Если гостям запрещено просматривать сайт, перенаправляем на страницу авторизации
         if (!empty($this->cms_config->is_site_only_auth_users)) {
-            if (!$this->cms_user->is_logged && !in_array($this->cms_core->uri_controller, array('auth', 'geo'))) {
+            if (!$this->cms_user->is_logged && !in_array($this->cms_core->uri_controller, array('auth', 'geo')) && !in_array($this->cms_core->uri_controller, array('api', 'method'))) {
                 return cmsUser::goLogin();
             }
         }
